@@ -1,5 +1,9 @@
 package org.java.spring;
 
+import org.java.spring.auth.db.pojo.Role;
+import org.java.spring.auth.db.pojo.User;
+import org.java.spring.auth.db.serv.RoleService;
+import org.java.spring.auth.db.serv.UserService;
 import org.java.spring.db.pojo.Ingredient;
 import org.java.spring.db.pojo.Pizza;
 import org.java.spring.db.serv.IngredientService;
@@ -17,6 +21,12 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	
 	@Autowired
 	private IngredientService ingredientService;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringLaMiaPizzeriaCrudApplication.class, args);
@@ -41,5 +51,14 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 		ingredientService.save(new Ingredient("ingrediente-8"));
 		ingredientService.save(new Ingredient("ingrediente-9"));
 		ingredientService.save(new Ingredient("ingrediente-10"));
+		
+		Role roleUser = new Role("USER");
+		Role roleAdmin = new Role("ADMIN");
+		
+		roleService.save(roleUser);
+		roleService.save(roleAdmin);
+		
+		userService.save(new User("utente-1", "password-1", roleUser));
+		userService.save(new User("utente-2", "password-2", roleAdmin));
 	}
 }
