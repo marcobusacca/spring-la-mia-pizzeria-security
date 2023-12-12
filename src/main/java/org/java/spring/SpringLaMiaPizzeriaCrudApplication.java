@@ -1,5 +1,6 @@
 package org.java.spring;
 
+import org.java.spring.auth.conf.AuthConf;
 import org.java.spring.auth.db.pojo.Role;
 import org.java.spring.auth.db.pojo.User;
 import org.java.spring.auth.db.serv.RoleService;
@@ -58,7 +59,10 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 		roleService.save(roleUser);
 		roleService.save(roleAdmin);
 		
-		userService.save(new User("utente-1", "password-1", roleUser));
-		userService.save(new User("utente-2", "password-2", roleAdmin));
+		String pws1 = AuthConf.passwordEncoder().encode("password-1");
+		String pws2 = AuthConf.passwordEncoder().encode("password-2");
+		
+		userService.save(new User("utente-1", pws1, roleUser));
+		userService.save(new User("utente-2", pws2, roleAdmin));
 	}
 }
