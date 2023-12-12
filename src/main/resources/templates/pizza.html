@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<!-- Bootstrap CSS -->
+ 		<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}"/>
+ 		<!-- Font Awesome -->
+ 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<title>spring-la-mia-pizzeria-relazioni</title>
+	</head>
+	<style th:replace="frags :: style"></style>
+	<body>
+		<div class="container-fluid app-container border rounded-5 shadow">
+			<header th:replace="frags :: header"></header>
+			<main>
+				<div class="container-fluid">
+					<div class="row p-5">
+						<div th:replace="frags :: homebutton"></div>
+						<div class="col-12 text-center my-3">
+							<img th:src="${pizza.getUrl_foto()}">
+						</div>
+						<div class="col-12 text-center my-5">
+							<h3 th:text="${pizza.getNome()} + ' - ' + ${pizza.getPrezzoFormattato()}"></h3>
+							<p th:text="${pizza.getDescrizione()}" class="py-3"></p>
+						</div>
+						<div th:if="${!pizza.ingredients.isEmpty()}" class="col-12 text-center my-5">
+							<h3>Ingredienti</h3>
+							<ul class="list-unstyled my-3">
+								<li th:each="ingredient : ${pizza.ingredients}" th:text="${ingredient.getNome()}" class="py-2"></li>
+							</ul>
+						</div>
+						<div class="col-12 my-5">
+							<h5 th:if="${discounts.isEmpty()}" class="text-center">Nessuna offerta speciale</h5>
+							<table class="table" th:if="${!discounts.isEmpty()}">
+							  <thead>
+							    <tr>
+							      <th scope="col">Titolo</th>
+							      <th scope="col">Inizio</th>
+							      <th scope="col">Fine</th>
+							      <th scope="col">Strumenti</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <tr th:each="discount : ${discounts}">
+							      <td th:text="${discount.getTitolo()}"></td>
+							      <td th:text="${discount.getData_inizio()}"></td>
+							      <td th:text="${discount.getData_fine()}"></td>
+							      <td>
+								  	<a th:href="@{/pizzas/{pizzaId}/discount/edit/{discountId} (pizzaId=${pizza.getId()}, discountId=${discount.getId()})}" class="btn btn-warning">
+										<i class="fas fa-edit"></i>
+									</a>
+								  </td>
+							    </tr>
+							  </tbody>
+							</table>
+						</div>
+						<div class="col-12 text-center my-5">
+							<a th:href="@{/pizzas/{pizzaId}/discount/create (pizzaId=${pizza.getId()})}" class="btn btn-success">Crea un'offerta speciale</a>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+		<!-- Bootstrap Bundle with Popper -->
+ 		<script th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js}"></script>
+	</body>
+</html>

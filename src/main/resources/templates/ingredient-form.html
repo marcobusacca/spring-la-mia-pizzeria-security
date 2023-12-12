@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<!-- Bootstrap CSS -->
+ 		<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}"/>
+ 		<!-- Font Awesome -->
+ 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<title>spring-la-mia-pizzeria-relazioni</title>
+	</head>
+	<style th:replace="frags :: style"></style>
+	<body>
+		<div class="container-fluid app-container border rounded-5 shadow">
+			<header th:replace="frags :: header"></header>
+			<main>
+				<div class="container-fluid">
+					<div class="row justify-content-center p-5">
+						<div th:replace="frags :: homebutton"></div>
+						<div class="col-12">
+							<div class="row">
+								<form th:object="${ingredient}" method="POST">
+									<div class="form-group mb-5">
+								  		<label for="nome" class="my-2">Nome</label>
+										<input th:field="*{nome}" type="text" name="nome" id="nome" placeholder="Inserisci il nome" class="form-control" th:errorClass="is-invalid" required>
+										<div th:replace="frags :: errorDiv('nome')"></div>
+									</div>
+									<div class="col-12 text-center">
+										<button type="submit" class="btn btn-primary px-5">Invia</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+		<!-- Bootstrap Bundle with Popper -->
+ 		<script th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js}"></script>
+	</body>
+</html>

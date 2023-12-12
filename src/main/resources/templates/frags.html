@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		
+		<style th:fragment="style">
+			.app-container{
+				width: 90vh;
+				margin-top: 50px;
+				margin-bottom: 50px;
+				justify-content: center;
+				align-items: center;
+			}
+		</style>
+		
+		<header th:fragment="header">
+		    <div class="container-fluid p-0">
+		        <div class="row border-bottom">
+		            <div class="col-12 text-center py-3">
+		                <h1>Pizza</h1>
+		            </div>
+		        </div>
+		    </div>
+		</header>
+		
+		<div th:fragment="homebutton"
+		class="col-12 mb-5">
+			<a href="/">
+				<i class="fa-solid fa-circle-arrow-left fa-xl text-black"></i>
+			</a>
+		</div>
+		
+		<div th:fragment="errorDiv(field)" th:if="${#fields.hasErrors(field)}" class="invalid-feedback">
+			<ul>
+			   <li th:each="err : ${#fields.errors(field)}" th:text="${err}"></li>
+			</ul>
+		</div>
+		
+	</body>
+</html>
