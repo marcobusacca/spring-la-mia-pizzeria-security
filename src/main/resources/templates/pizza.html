@@ -37,7 +37,7 @@
 							      <th scope="col">Titolo</th>
 							      <th scope="col">Inizio</th>
 							      <th scope="col">Fine</th>
-							      <th scope="col">Strumenti</th>
+							      <th scope="col" sec:authorize="hasAuthority('ADMIN')">Strumenti</th>
 							    </tr>
 							  </thead>
 							  <tbody>
@@ -46,7 +46,7 @@
 							      <td th:text="${discount.getData_inizio()}"></td>
 							      <td th:text="${discount.getData_fine()}"></td>
 							      <td>
-								  	<a th:href="@{/pizzas/{pizzaId}/discount/edit/{discountId} (pizzaId=${pizza.getId()}, discountId=${discount.getId()})}" class="btn btn-warning">
+								  	<a th:href="@{/pizzas/{pizzaId}/discount/edit/{discountId} (pizzaId=${pizza.getId()}, discountId=${discount.getId()})}" class="btn btn-warning" sec:authorize="hasAuthority('ADMIN')">
 										<i class="fas fa-edit"></i>
 									</a>
 								  </td>
@@ -54,7 +54,7 @@
 							  </tbody>
 							</table>
 						</div>
-						<div class="col-12 text-center my-5">
+						<div class="col-12 text-center my-5" sec:authorize="hasAuthority('ADMIN')">
 							<a th:href="@{/pizzas/{pizzaId}/discount/create (pizzaId=${pizza.getId()})}" class="btn btn-success">Crea un'offerta speciale</a>
 						</div>
 					</div>

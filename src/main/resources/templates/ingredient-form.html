@@ -19,6 +19,7 @@
 						<div class="col-12">
 							<div class="row">
 								<form th:object="${ingredient}" method="POST">
+									<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 									<div class="form-group mb-5">
 								  		<label for="nome" class="my-2">Nome</label>
 										<input th:field="*{nome}" type="text" name="nome" id="nome" placeholder="Inserisci il nome" class="form-control" th:errorClass="is-invalid" required>

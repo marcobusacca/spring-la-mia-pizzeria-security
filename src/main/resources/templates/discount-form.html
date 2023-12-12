@@ -19,6 +19,7 @@
 						<div class="col-12">
 							<div class="row">
 								<form th:object="${discount}" method="POST">
+									<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 									<div class="form-group my-5">
 								  		<label for="data_inizio" class="my-2">Data inizio</label>
 										<input th:value="*{data_inizio}" type="date" name="data_inizio" id="data_inizio" placeholder="Inserisci la data di inizio" class="form-control" th:errorClass="is-invalid" required>

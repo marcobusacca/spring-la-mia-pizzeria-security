@@ -23,14 +23,14 @@
 							    <tr>
 							      <th scope="col">ID</th>
 							      <th scope="col">Nome</th>
-							      <th scope="col">Strumenti</th>
+							      <th scope="col" sec:authorize="hasAuthority('ADMIN')">Strumenti</th>
 							    </tr>
 							  </thead>
 							  <tbody>
 							    <tr th:each="ingredient : ${ingredients}">
 							      <td th:text="${ingredient.getId()}"></td>
 							      <td th:text="${ingredient.getNome()}"></td>
-							      <td>
+							      <td sec:authorize="hasAuthority('ADMIN')">
 									<form style="display:inline-block" th:action="@{/ingredients/delete/{ingredientId} (ingredientId=${ingredient.getId()})}" method="POST" onsubmit="return confirm('Sei sicuro?')">
 										<button type="submit" class="btn btn-danger">
 											<i class="fas fa-trash"></i>
@@ -41,7 +41,7 @@
 							  </tbody>
 							</table>
 						</div>
-						<div class="col-12 text-center py-5">
+						<div class="col-12 text-center py-5" sec:authorize="hasAuthority('ADMIN')">
 		                		<a href="/ingredients/create" class="btn btn-success">Crea un nuovo ingrediente</a>
 		            		</div>
 					</div>

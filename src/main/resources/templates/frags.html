@@ -21,6 +21,12 @@
 		        <div class="row border-bottom">
 		            <div class="col-12 text-center py-3">
 		                <h1>Pizza</h1>
+		                <p>
+							Utente: <span sec:authentication="name"></span>
+							<br>
+							Ruolo: <span sec:authentication="principal.authorities"></span>
+						</p>
+						<a href="/logout" class="btn btn-primary">Logout</a>
 		            </div>
 		        </div>
 		    </div>
